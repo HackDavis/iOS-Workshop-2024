@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BAEEFBB2B848A03002A5AFD /* MyPokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAEEFBA2B848A03002A5AFD /* MyPokemonView.swift */; };
+		5BAEEFBD2B848A50002A5AFD /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAEEFBC2B848A50002A5AFD /* Pokemon.swift */; };
+		5BAEEFBF2B848A6A002A5AFD /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAEEFBE2B848A6A002A5AFD /* PokemonViewModel.swift */; };
+		5BAEEFC12B8499CB002A5AFD /* AllPokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAEEFC02B8499CB002A5AFD /* AllPokemonView.swift */; };
+		5BAEEFC52B849B71002A5AFD /* AddPokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAEEFC42B849B71002A5AFD /* AddPokemonView.swift */; };
 		5BB138022B842E4B009A8C2C /* iOS_Workshop_2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB138012B842E4B009A8C2C /* iOS_Workshop_2024App.swift */; };
 		5BB138042B842E4B009A8C2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB138032B842E4B009A8C2C /* ContentView.swift */; };
 		5BB138062B842E4E009A8C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB138052B842E4E009A8C2C /* Assets.xcassets */; };
@@ -14,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5BAEEFBA2B848A03002A5AFD /* MyPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPokemonView.swift; sourceTree = "<group>"; };
+		5BAEEFBC2B848A50002A5AFD /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		5BAEEFBE2B848A6A002A5AFD /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
+		5BAEEFC02B8499CB002A5AFD /* AllPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPokemonView.swift; sourceTree = "<group>"; };
+		5BAEEFC42B849B71002A5AFD /* AddPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPokemonView.swift; sourceTree = "<group>"; };
 		5BB137FE2B842E4B009A8C2C /* iOS-Workshop-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Workshop-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB138012B842E4B009A8C2C /* iOS_Workshop_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Workshop_2024App.swift; sourceTree = "<group>"; };
 		5BB138032B842E4B009A8C2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,7 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				5BB138012B842E4B009A8C2C /* iOS_Workshop_2024App.swift */,
+				5BAEEFBC2B848A50002A5AFD /* Pokemon.swift */,
+				5BAEEFBE2B848A6A002A5AFD /* PokemonViewModel.swift */,
 				5BB138032B842E4B009A8C2C /* ContentView.swift */,
+				5BAEEFBA2B848A03002A5AFD /* MyPokemonView.swift */,
+				5BAEEFC02B8499CB002A5AFD /* AllPokemonView.swift */,
+				5BAEEFC42B849B71002A5AFD /* AddPokemonView.swift */,
 				5BB138052B842E4E009A8C2C /* Assets.xcassets */,
 				5BB138072B842E4E009A8C2C /* Preview Content */,
 			);
@@ -137,8 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BAEEFC12B8499CB002A5AFD /* AllPokemonView.swift in Sources */,
 				5BB138042B842E4B009A8C2C /* ContentView.swift in Sources */,
+				5BAEEFBF2B848A6A002A5AFD /* PokemonViewModel.swift in Sources */,
+				5BAEEFC52B849B71002A5AFD /* AddPokemonView.swift in Sources */,
+				5BAEEFBD2B848A50002A5AFD /* Pokemon.swift in Sources */,
 				5BB138022B842E4B009A8C2C /* iOS_Workshop_2024App.swift in Sources */,
+				5BAEEFBB2B848A03002A5AFD /* MyPokemonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
