@@ -28,9 +28,9 @@ enum NetworkError: Error {
 }
 
 class PokemonViewModel: ObservableObject {
-    @Published var allPokemon = [CompressedPokemon]()
     @Published var myPokemon = [Pokemon]()
     
+// MARK: - API Call
     func callApi<T: Codable>(url: String) async -> T? {
         do {
             guard let url = URL(string: url) else {
@@ -61,13 +61,41 @@ class PokemonViewModel: ObservableObject {
         return nil
     }
     
-    func fetchAll() async {
-        guard let pokemonResults: PokemonData = await callApi(url: "https://pokeapi.co/api/v2/pokemon") else { return }
-        allPokemon = pokemonResults.results
-    }
-    
     func fetchPokemon(name: String) async {
         guard let pokemonResults: Pokemon = await callApi(url: "https://pokeapi.co/api/v2/pokemon/\(name.lowercased())") else { return }
         myPokemon.append(pokemonResults)
+    }
+    
+// MARK: - Storage
+    private static func fileURL() throws -> URL {
+        try FileManager.default.url(for: .documentDirectory,
+                                    in: .userDomainMask,
+                                    appropriateFor: nil,
+                                    create: false)
+        .appendingPathComponent("pokemon.data")
+    }
+
+
+    func load() async throws {
+        let task = Task<[Pokemon], Error> {
+            let fileURL = try Self.fileURL()
+            guard let data = try? Data(contentsOf: fileURL) else {
+                return []
+            }
+            let pokemon = try JSONDecoder().decode([Pokemon].self, from: data)
+            return pokemon
+        }
+        let pokemon = try await task.value
+        self.myPokemon = pokemon
+    }
+
+
+    func save(pokemon: [Pokemon]) async throws {
+        let task = Task {
+            let data = try JSONEncoder().encode(pokemon)
+            let outfile = try Self.fileURL()
+            try data.write(to: outfile)
+        }
+        _ = try await task.value
     }
 }

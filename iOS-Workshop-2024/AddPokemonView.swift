@@ -14,18 +14,25 @@ struct AddPokemonView: View {
     @State private var name = ""
     
     var body: some View {
-        TextField("Pokemon Name", text: $name)
-            .textFieldStyle(.roundedBorder)
-            .frame(maxWidth: 300)
-        
-        Button("Search") {
-            Task {
-                await viewModel.fetchPokemon(name: name)
-            }
+        VStack {
+            TextField("Pokemon Name", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .frame(maxWidth: 300)
             
-            presentationMode.wrappedValue.dismiss()
+            Button("Search") {
+                Task {
+                    await viewModel.fetchPokemon(name: name)
+                    do {
+                        try await viewModel.save(pokemon: viewModel.myPokemon)
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+                
+                presentationMode.wrappedValue.dismiss()
+            }
+            .buttonStyle(.borderedProminent)
         }
-        .buttonStyle(.borderedProminent)
     }
 }
 

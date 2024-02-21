@@ -7,16 +7,6 @@
 
 import Foundation
 
-// MARK: - PokemonData
-struct PokemonData: Codable {
-    let results: [CompressedPokemon]
-}
-
-struct CompressedPokemon: Identifiable, Codable {
-    let id: UUID = UUID()
-    let name: String
-}
-
 // MARK: - Pokemon
 struct Pokemon: Identifiable, Codable {
     let id: Int
