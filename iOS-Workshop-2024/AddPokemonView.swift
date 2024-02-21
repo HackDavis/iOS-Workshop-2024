@@ -18,15 +18,11 @@ struct AddPokemonView: View {
             TextField("Pokemon Name", text: $name)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: 300)
+                .disableAutocorrection(true)
             
             Button("Search") {
                 Task {
                     await viewModel.fetchPokemon(name: name)
-                    do {
-                        try await viewModel.save(pokemon: viewModel.myPokemon)
-                    } catch {
-                        fatalError(error.localizedDescription)
-                    }
                 }
                 
                 presentationMode.wrappedValue.dismiss()

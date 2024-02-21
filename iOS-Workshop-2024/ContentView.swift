@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var viewModel = PokemonViewModel()
     
     @State private var showingAddPokemon = false
     
+    func removeRows(at offsets: IndexSet) {
+        viewModel.myPokemon.remove(atOffsets: offsets)
+    }
     
     var body: some View {
         NavigationStack {
             List {
                 ForEach(viewModel.myPokemon) { pokemon in
-                    VStack {
+                    NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
                         HStack {
                             let url = URL(string: pokemon.sprites.frontDefault ?? "")
                             AsyncImage(url: url) { phase in
@@ -40,7 +44,9 @@ struct ContentView: View {
                             Spacer()
                         }
                     }
+                    .contentShape(Rectangle())
                 }
+                .onDelete(perform: removeRows)
             }
             .sheet(isPresented: $showingAddPokemon) {
                 AddPokemonView(viewModel: viewModel)
@@ -48,10 +54,19 @@ struct ContentView: View {
             .navigationTitle("My Pokemon")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingAddPokemon = true
-                    }) {
+                    Button(action: { showingAddPokemon = true }) {
                         Image(systemName: "plus")
+                    }
+                }
+            }
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .inactive {
+                Task {
+                    do {
+                        try await viewModel.save(pokemon: viewModel.myPokemon)
+                    } catch {
+                        fatalError(error.localizedDescription)
                     }
                 }
             }

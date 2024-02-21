@@ -14,14 +14,7 @@ struct Pokemon: Identifiable, Codable {
     let height: Int
     let weight: Int
     let sprites: Sprites
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case height
-        case weight
-        case sprites
-    }
+    let moves: [Move]
 }
 
 // MARK: - Sprites
@@ -56,4 +49,13 @@ class Sprites: Codable {
         self.frontShiny = frontShiny
         self.frontShinyFemale = frontShinyFemale
     }
+}
+
+class Move: Identifiable, Codable {
+    let id: UUID = UUID()
+    let move: MoveName
+}
+
+class MoveName: Codable {
+    let name: String
 }
